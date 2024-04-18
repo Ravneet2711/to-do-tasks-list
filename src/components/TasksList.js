@@ -1,8 +1,10 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 import TasksListItem from "./TasksListItem";
+import useScreenSize from "../hooks/useScreenSize";
 
 const TasksList = ({ tasks }) => {
+  const isSmallScreen = useScreenSize()
   return (
     <ListGroup>
       {tasks
@@ -16,7 +18,7 @@ const TasksList = ({ tasks }) => {
         })
         .map(task => {
           return (
-            <ListGroupItem key={task.id}>
+            <ListGroupItem key={task.id} style={isSmallScreen ?{padding:  "12px"}: {}}>
               <TasksListItem task={task} />
             </ListGroupItem>
           );

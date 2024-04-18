@@ -3,8 +3,10 @@ import { deleteTaskById,updateTask } from "../redux/taskActions";
 import { useDispatch } from "react-redux";
 import { FormGroup, Tooltip, Input } from 'reactstrap';
 import { FiAlertCircle, FiCheckCircle,FiXCircle } from "react-icons/fi";
+import useScreenSize from "../hooks/useScreenSize";
 
 const TasksListItem = ({ task }) => {
+  const isSmallScreen = useScreenSize()
   const dispatch = useDispatch();
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
@@ -24,21 +26,22 @@ const TasksListItem = ({ task }) => {
         style={{
           margin: "auto 0",
           textAlign: "center",
-          height: "40px",
-          width: "40px",
-          lineHeight: "40px",
+          height: isSmallScreen ? "32px":"40px",
+          width: isSmallScreen ? "32px":"40px",
+          lineHeight: isSmallScreen ? "32px":"40px",
           borderRadius: "50%",
           color: "white",
           fontWeight: "bold",
           background: stringToHSLColor(task.title + task?.title?.slice(-1)),
           flexShrink:0,
+          fontSize:isSmallScreen? "12px":"17px"
         }}
       >
         {!!task && !!task.title
           ? task?.title[0].toUpperCase() + task?.title?.slice(-1).toUpperCase()
           : ""}
       </div>
-      <div style={{margin: "auto 8px", flexGrow: 1}}>
+      <div style={{margin: "auto 8px", flexGrow: 1, fontSize: isSmallScreen?"16px":""}} >
         {task?.title}
       </div>
 

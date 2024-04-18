@@ -45,3 +45,4 @@ Your app is ready to be deployed!
 - Implementation of useState() and useEffect() react hooks.
 - Implementation of React Redux for app wide state management.
 - Implementation of Redux Persist for persisting reducer state.
+- Instead of using CSS, utilize a Custom Hook to handle styling adjustments for screen sizes below 768 pixels.
