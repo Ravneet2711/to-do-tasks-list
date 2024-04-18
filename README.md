@@ -38,6 +38,7 @@ Your app is ready to be deployed!
 - [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [React Redux](https://react-redux.js.org/)
 - [Redux Persist](https://www.npmjs.com/package/redux-persist)
+- [ReactStap](https://reactstrap.github.io/?path=/story/home-installation--page)
 
 ## Implementation
 
@@ -45,4 +46,5 @@ Your app is ready to be deployed!
 - Implementation of useState() and useEffect() react hooks.
 - Implementation of React Redux for app wide state management.
 - Implementation of Redux Persist for persisting reducer state.
-- Instead of using CSS, utilize a Custom Hook to handle styling adjustments for screen sizes below 768 pixels.
+- Although Reactstrap is responsive but for some neccessary styling I have used inline styling on the basis of screen width(using the "resize" event of window) instead of using CSS media query. 
+- Utilize a Custom Hook to handle styling adjustments for screen sizes below 768 pixels.
