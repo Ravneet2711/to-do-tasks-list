@@ -1,8 +1,8 @@
 import React,{useState} from "react";
-import { Button } from "reactstrap";
 import { deleteTaskById,updateTask } from "../redux/taskActions";
 import { useDispatch } from "react-redux";
 import { FormGroup, Tooltip, Input } from 'reactstrap';
+import { FiAlertCircle, FiCheckCircle,FiXCircle } from "react-icons/fi";
 
 const TasksListItem = ({ task }) => {
   const dispatch = useDispatch();
@@ -31,17 +31,18 @@ const TasksListItem = ({ task }) => {
           color: "white",
           fontWeight: "bold",
           background: stringToHSLColor(task.title + task?.title?.slice(-1)),
+          flexShrink:0,
         }}
       >
         {!!task && !!task.title
           ? task?.title[0].toUpperCase() + task?.title?.slice(-1).toUpperCase()
           : ""}
       </div>
-      <div style={{ margin: "auto 0", flexGrow: 1, paddingLeft: "10px" }}>
+      <div style={{margin: "auto 8px", flexGrow: 1}}>
         {task?.title}
       </div>
 
-      <div style={{ margin: "auto 0",display:"flex",alignItems:"center",gap: "10px" }}>
+      <div style={{ margin: "auto 0",display:"flex",alignItems:"center",gap: "8px" }}>
         <FormGroup switch>
           <Input
             id={"tooltip" + task?.id}
@@ -58,14 +59,19 @@ const TasksListItem = ({ task }) => {
             isOpen={tooltipOpen}
             target={"tooltip" + task?.id}
             toggle={() => setTooltipOpen(!tooltipOpen)}
-          >Update Status</Tooltip>
+          >Mark as {task?.status ? "pending" : "completed"}</Tooltip>
         </FormGroup>
-        <Button size="sm" color={task?.status ? "success" : "warning"}>
-          {task?.status ? "Completed" : "Pending"}
-        </Button>
-        <Button size="sm" color="danger" outline onClick={() => dispatch(deleteTaskById(task?.id))}>
-          Delete
-        </Button>
+
+        {task?.status ? 
+          <FiCheckCircle color="green" size={22} style={{flexShrink:0}} title="Completed" />
+          :
+          <FiAlertCircle color="#FFB302" size={22} style={{flexShrink:0}} title="Pending" />
+        }
+
+        <FiXCircle color="#DC3545" size={22} style={{flexShrink:0,cursor:"pointer"}} 
+          title="Delete task"
+          onClick={() => dispatch(deleteTaskById(task?.id))}
+        />
       </div>
     </div>
   );
