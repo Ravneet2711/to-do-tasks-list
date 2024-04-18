@@ -41,12 +41,6 @@ const TasksListItem = ({ task }) => {
         {task?.title}
       </div>
 
-      <div style={{ margin: "auto 0", flexGrow: 1, paddingLeft: "10px" }}>
-        <Button size="sm" color={task?.status ? "success" : "warning"}>
-          {task?.status ? "Completed" : "Pending"}
-        </Button>
-      </div>
-
       <div style={{ margin: "auto 0",display:"flex",alignItems:"center",gap: "10px" }}>
         <FormGroup switch>
           <Input
@@ -66,6 +60,9 @@ const TasksListItem = ({ task }) => {
             toggle={() => setTooltipOpen(!tooltipOpen)}
           >Update Status</Tooltip>
         </FormGroup>
+        <Button size="sm" color={task?.status ? "success" : "warning"}>
+          {task?.status ? "Completed" : "Pending"}
+        </Button>
         <Button size="sm" color="danger" outline onClick={() => dispatch(deleteTaskById(task?.id))}>
           Delete
         </Button>
